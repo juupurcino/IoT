@@ -1,0 +1,108 @@
+import random 
+import os
+import time     
+from machine import Pin, ADC
+
+#Amarelo
+buttonAmarelo = Pin(27, Pin.IN)
+ledAmarelo = Pin(25, Pin.OUT)
+
+#Azul
+buttonAzul = Pin(34, Pin.IN)
+ledAzul = Pin(26, Pin.OUT)
+
+#Vermelho
+buttonVermelho = Pin(14, Pin.IN)
+ledVermelho = Pin(32, Pin.OUT)
+
+#Verde
+buttonVerde = Pin(12, Pin.IN)
+ledVerde = Pin(33, Pin.OUT)
+
+#Buzzer
+buzzer = Pin(13, Pin.OUT)
+
+acerto = True
+jogadas = 0
+sorteados = []
+decimal = 1
+
+while acerto:
+
+    if (buttonAmarelo.value() == 1):
+        ledAmarelo.on()
+    else:
+        ledAmarelo.off()
+    
+    if (buttonVermelho.value() == 1):
+        ledVermelho.on()
+    else:
+        ledVermelho.off()
+    
+    if (buttonAzul.value() == 1):
+        ledAzul.on()
+    else:
+        ledAzul.off()
+    
+    if (buttonVerde.value() == 1):
+        ledVerde.on()
+    else:
+        ledVerde.off()
+    
+    # jogadas += 1
+    # atual = random.randint(1,4)
+    # sorteados.append(atual)
+    
+    # for i in range(jogadas):
+        
+    #     print(f'{i+1}: {sorteados[i]}')
+        
+    #     if(atual == 1):
+    #         ledAmarelo.on()
+    #         buzzer.on()
+    #         time.sleep(0.5)
+    #         buzzer.off()
+    #         time.sleep(1)
+    #         ledAmarelo.off()
+        
+    #     if(atual == 2):
+    #         ledAzul.on()
+    #         buzzer.on()
+    #         time.sleep(0.5)
+    #         buzzer.off()
+    #         time.sleep(1)
+    #         ledAzul.off()
+        
+    #     if(atual == 2):
+    #         ledVermelho.on()
+    #         buzzer.on()
+    #         time.sleep(0.5)
+    #         buzzer.off()
+    #         time.sleep(1)
+    #         ledVermelho.off()
+        
+    #     if(atual == 4):
+    #         ledVerde.on()
+    #         buzzer.on()
+    #         time.sleep(0.5)
+    #         buzzer.off()
+    #         time.sleep(1)
+    #         ledVerde.off()
+    
+    # for i in range(jogadas):
+        
+    #     amarelo = buttonAmarelo.value()
+    #     azul = buttonAzul.value()
+    #     vermelho = buttonVermelho.value()
+    #     verde = buttonVerde.value()
+
+
+        
+    #     if sorteados[i] != user:
+    #         print("Você errou")
+    #         print(f"A sequencia era {sorteados}")
+    #         acerto = False
+
+    # if jogadas == 100:
+    #     print("Parabens você chegou em 100 jogadas!")
+    #     acerto = False
