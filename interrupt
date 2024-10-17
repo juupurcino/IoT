@@ -1,0 +1,31 @@
+#include <Arduino.h>
+
+#define LED 7
+#define LEDVERMELHO 6
+#define BOTAO 3
+
+byte estado_led = LOW;
+byte estado_led_vermelho = HIGH;
+
+void blink_led(){
+
+  estado_led = !estado_led;
+  estado_led_vermelho = !estado_led_vermelho;
+}
+
+void setup(){
+
+  pinMode(LED, OUTPUT);
+  pinMode(LEDVERMELHO, OUTPUT);
+  pinMode(BOTAO, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(BOTAO), blink_led, RISING);
+
+}
+
+void loop(){
+
+  digitalWrite(LED, estado_led);
+  digitalWrite(LEDVERMELHO, estado_led_vermelho);
+
+}
