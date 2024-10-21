@@ -1,0 +1,33 @@
+#include <Arduino.h>
+
+#include <VirtualWire.h>
+
+void setup()
+{
+	vw_set_tx_pin(5);
+	Serial.begin(9600);
+	Serial.println("setup");
+	vw_set_ptt_inverted(true);
+	vw_setup(2000);
+	pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+	byte x[1];
+	x[0] = 0;
+	for(int i = 0; i <= 255; i++){
+		x[0] = i;
+		digitalWrite(13, HIGH);
+		vw_send(x, 1);
+		vw_wait_tx();
+	}
+
+	for(int i = 255; i >= 0; i--){
+		x[0] = i;
+		digitalWrite(13, LOW);
+		vw_send(x, 1);
+		vw_wait_tx();
+		digitalWrite(13, LOW);
+	}
+}
