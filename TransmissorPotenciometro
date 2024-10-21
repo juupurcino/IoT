@@ -1,0 +1,24 @@
+#include <Arduino.h>
+#include <VirtualWire.h>
+
+void setup()
+{
+    vw_set_tx_pin(5);
+    Serial.begin(9600);
+    Serial.println("setup");
+    vw_set_ptt_inverted(true);
+    vw_setup(2000);
+    pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+    byte x[1];
+    int potValue = analogRead(A15);
+    x[0] = map(potValue, 0, 1023, 0, 255);
+    digitalWrite(13, HIGH);
+    vw_send(x, 1);
+    vw_wait_tx();
+    digitalWrite(13, LOW);
+    delay(100);
+}
