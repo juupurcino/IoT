@@ -1,0 +1,25 @@
+#include <Arduino.h>
+#include <VirtualWire.h>
+
+void setup()
+{
+    Serial.begin(9600);
+    vw_set_rx_pin(5);
+    vw_setup(2000);
+    vw_rx_start();
+    pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+    byte buf[1];
+    byte buflen = sizeof(buf);
+
+    if (vw_get_message(buf, &buflen))
+    {
+        int ledValue = buf[0];
+        analogWrite(13, ledValue); 
+        Serial.print("Valor recebido: ");
+        Serial.println(ledValue);
+    }
+}
